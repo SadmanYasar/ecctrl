@@ -14,6 +14,7 @@ import ShotCube from "./ShotCube";
 import { useControls } from "leva";
 import CharacterModel from "./CharacterModel";
 import React, { useEffect, useState } from "react";
+import { NavMesh } from "three-mesh-bvh";
 
 export default function Experience() {
   /**

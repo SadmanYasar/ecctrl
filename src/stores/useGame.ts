@@ -11,6 +11,36 @@ export const useGame = /* @__PURE__ */ create(
       moveToPoint: null as THREE.Vector3,
 
       /**
+       * NavMesh state management
+       */
+      navMesh: null as THREE.Object3D,
+      navMeshAgent: null as THREE.Object3D,
+
+      setNavMesh: (navMesh: THREE.Object3D) => {
+        set(() => {
+          return { navMesh };
+        });
+      },
+
+      setNavMeshAgent: (navMeshAgent: THREE.Object3D) => {
+        set(() => {
+          return { navMeshAgent };
+        });
+      },
+
+      getNavMesh: () => {
+        return {
+          navMesh: get().navMesh,
+        };
+      },
+
+      getNavMeshAgent: () => {
+        return {
+          navMeshAgent: get().navMeshAgent,
+        };
+      },
+
+      /**
        * Character animations state manegement
        */
       // Initial animation
@@ -180,6 +210,8 @@ export type AnimationSet = {
 
 type State = {
   moveToPoint: THREE.Vector3;
+  navMesh: THREE.Object3D;
+  navMeshAgent: THREE.Object3D;
   curAnimation: string;
   animationSet: AnimationSet;
   initializeAnimationSet: (animationSet: AnimationSet) => void;
@@ -187,7 +219,15 @@ type State = {
   setMoveToPoint: (point: THREE.Vector3) => void;
   getMoveToPoint: () => {
     moveToPoint: THREE.Vector3;
-  }
+  };
+  setNavMesh: (navMesh: THREE.Object3D) => void;
+  setNavMeshAgent: (navMeshAgent: THREE.Object3D) => void;
+  getNavMesh: () => {
+    navMesh: THREE.Object3D;
+  };
+  getNavMeshAgent: () => {
+    navMeshAgent: THREE.Object3D;
+  };
 } & {
   [key in keyof AnimationSet]: () => void;
 };

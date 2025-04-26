@@ -22,6 +22,7 @@ import type {
   Vector,
 } from "@dimforge/rapier3d-compat";
 import React from "react";
+import { NavMesh } from "three-mesh-bvh";
 
 export { EcctrlAnimation } from "./EcctrlAnimation";
 export { useFollowCam } from "./hooks/useFollowCam";
@@ -150,12 +151,14 @@ const Ecctrl: ForwardRefRenderFunction<CustomEcctrlRigidBody, EcctrlProps> = ({
   let functionKeyDown: boolean = false
   let isModeFixedCamera: boolean = false
   let isModeCameraBased: boolean = false
+  let isModeNavMesh: boolean = false
   const setMoveToPoint = useGame((state) => state.setMoveToPoint)
   const findMode = (mode: string, modes: string) => modes.split(" ").some(m => m === mode)
   if (mode) {
     if (findMode("PointToMove", mode)) isModePointToMove = true
     if (findMode("FixedCamera", mode)) isModeFixedCamera = true
     if (findMode("CameraBasedMovement", mode)) isModeCameraBased = true
+    if (findMode("NavMesh", mode)) isModeNavMesh = true
   }
 
   /** 

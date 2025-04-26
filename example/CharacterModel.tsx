@@ -12,6 +12,7 @@ import { useGame } from "../src/stores/useGame";
 import { BallCollider, RapierCollider, vec3 } from "@react-three/rapier";
 import { useFrame } from "@react-three/fiber";
 import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
+import { BVH, MeshBVH, acceleratedRaycast } from 'three-mesh-bvh';
 
 export default function CharacterModel(props: CharacterModelProps) {
   // Change the character src to yours
