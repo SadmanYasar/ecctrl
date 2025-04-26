@@ -1,7 +1,7 @@
+import React, { useRef, useMemo, useState, useEffect } from "react";
 import * as THREE from "three";
 import { useThree } from "@react-three/fiber";
 import { RapierRigidBody, RigidBody } from "@react-three/rapier";
-import { useRef, useMemo, useState, useEffect } from "react";
 
 export default function ShotCube() {
   const { camera } = useThree();
@@ -14,7 +14,11 @@ export default function ShotCube() {
     if (document.pointerLockElement) {
       const newMesh = (
         <mesh
-          position={[camera.position.x, camera.position.y - 0.5, camera.position.z]}
+          position={[
+            camera.position.x,
+            camera.position.y - 0.5,
+            camera.position.z,
+          ]}
           castShadow
           receiveShadow
         >

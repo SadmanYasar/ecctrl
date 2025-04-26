@@ -6,7 +6,7 @@ import {
   SpriteAnimator,
 } from "@react-three/drei";
 import { useControls } from "leva";
-import { Suspense, useEffect, useRef, useMemo, useState } from "react";
+import React, { Suspense, useEffect, useRef, useMemo, useState } from "react";
 import * as THREE from "three";
 import { useGame } from "../src/stores/useGame";
 import { BallCollider, RapierCollider, vec3 } from "@react-three/rapier";
@@ -17,7 +17,9 @@ import { BVH, MeshBVH, acceleratedRaycast } from 'three-mesh-bvh';
 export default function CharacterModel(props: CharacterModelProps) {
   // Change the character src to yours
   const group = useRef<THREE.Group>();
-  const { nodes, animations } = useGLTF("/Floating Character.glb") as GLTF & {
+  const { nodes, animations } = useGLTF(
+    "/Floating Character.glb"
+  ) as unknown as GLTF & {
     nodes: any;
   };
   const { actions } = useAnimations(animations, group);
@@ -141,8 +143,14 @@ export default function CharacterModel(props: CharacterModelProps) {
       // Apply hands position to hand colliders
       if (rightHandColliderRef.current) {
         // check if parent group autobalance is on or off
-        if (group.current.parent.quaternion.y === 0 && group.current.parent.quaternion.w === 1) {
-          rightHandRef.current.position.copy(rightHandPos).sub(bodyPos).applyQuaternion(bodyRot.conjugate());
+        if (
+          group.current.parent.quaternion.y === 0 &&
+          group.current.parent.quaternion.w === 1
+        ) {
+          rightHandRef.current.position
+            .copy(rightHandPos)
+            .sub(bodyPos)
+            .applyQuaternion(bodyRot.conjugate());
         } else {
           rightHandRef.current.position.copy(rightHandPos).sub(bodyPos);
         }
@@ -199,7 +207,9 @@ export default function CharacterModel(props: CharacterModelProps) {
       // Move hand collider back to initial position after action
       if (curAnimation === animationSet.action4) {
         if (rightHandColliderRef.current) {
-          rightHandColliderRef.current.setTranslationWrtParent(vec3({ x: 0, y: 0, z: 0 }))
+          rightHandColliderRef.current.setTranslationWrtParent(
+            vec3({ x: 0, y: 0, z: 0 })
+          );
         }
       }
     };
@@ -241,11 +251,7 @@ export default function CharacterModel(props: CharacterModelProps) {
       <group ref={leftHandRef} />
       <BallCollider args={[0.1]} ref={leftHandColliderRef} />
       {/* Character model */}
-      <group
-        ref={group}
-        {...props}
-        dispose={null}
-      >
+      <group ref={group} {...props} dispose={null}>
         <group name="Scene" scale={0.8} position={[0, -0.6, 0]}>
           <group name="KayKit_Animated_Character">
             <skinnedMesh

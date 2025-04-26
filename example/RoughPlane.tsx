@@ -1,6 +1,6 @@
+import React, { useEffect } from "react";
 import { RigidBody } from "@react-three/rapier";
 import { useGLTF } from "@react-three/drei";
-import { useEffect } from "react";
 import * as THREE from "three";
 
 export default function RoughPlane() {
