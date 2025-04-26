@@ -84,6 +84,7 @@ export default function Experience() {
             autoBalanceDampingOnY={0.05}
             disableControl={disableControl}
             disableFollowCam={disableFollowCam}
+            mode="Navmesh"
           >
             {/* Replace your model here */}
             <CharacterModel />
