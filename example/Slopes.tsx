@@ -1,3 +1,4 @@
+import React from "react";
 import { RigidBody } from "@react-three/rapier";
 import { useGLTF, Text } from "@react-three/drei";
 import { useEffect } from "react";

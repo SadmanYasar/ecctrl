@@ -6,7 +6,7 @@ import {
   RapierRigidBody,
   RigidBody,
 } from "@react-three/rapier";
-import { useRef, useMemo } from "react";
+import React, { useRef, useMemo } from "react";
 import * as THREE from "three";
 
 export default function DynamicPlatforms() {

@@ -1,9 +1,5 @@
-import {
-  CuboidCollider,
-  RigidBody,
-  useRapier,
-} from "@react-three/rapier";
-import { useEffect, useRef, useMemo } from "react";
+import { CuboidCollider, RigidBody, useRapier } from "@react-three/rapier";
+import React, { useEffect, useRef, useMemo } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { Text } from "@react-three/drei";
